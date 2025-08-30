@@ -1,0 +1,9 @@
+{
+  "id": "smart-fold",
+  "name": "Smart Fold",
+  "version": "1.0.0",
+  "minAppVersion": "1.8.0",
+  "description": "Fold lists and headings from anywhere.",
+  "author": "Mariano Montoya",
+  "isDesktopOnly": false
+}

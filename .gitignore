@@ -1,0 +1,6 @@
+# npm
+node_modules
+# obsidian local data
+/data.json
+# compiled JavaScript
+/main.js

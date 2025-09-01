@@ -3,8 +3,8 @@ import { smartFold } from "./foldLogic";
 
 export function registerSmartFoldCommand(plugin: SmartFoldPlugin) {
   plugin.addCommand({
-    id: "smart-fold-toggle",
-    name: "Smart Fold",
+    id: "toggle-smart-fold",
+    name: "Toggle Smart Fold",
     editorCallback: (editor, view) => {
       if (view && "getViewType" in view) {
         // Ensure `view` is of type `MarkdownView`
@@ -12,12 +12,6 @@ export function registerSmartFoldCommand(plugin: SmartFoldPlugin) {
       } else {
         console.error("Invalid view type passed to smartFold");
       }
-    },
-    hotkeys: [
-      {
-        modifiers: ["Mod", "Shift"],
-        key: "f",
-      },
-    ],
+    }
   });
 }

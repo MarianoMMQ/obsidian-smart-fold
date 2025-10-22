@@ -3,8 +3,8 @@ import { smartFold } from "./foldLogic";
 
 export function registerSmartFoldCommand(plugin: SmartFoldPlugin) {
   plugin.addCommand({
-    id: "toggle-smart-fold",
-    name: "Toggle Smart Fold",
+    id: "toggle-fold",
+    name: "Toggle Fold",
     editorCallback: (editor, view) => {
       if (view && "getViewType" in view) {
         // Ensure `view` is of type `MarkdownView`

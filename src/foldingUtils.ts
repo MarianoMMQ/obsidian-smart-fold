@@ -2,6 +2,14 @@ import { App, Editor, EditorPosition } from "obsidian";
 import { foldedRanges } from "@codemirror/language";
 import type { EditorView } from "@codemirror/view";
 
+/* ---------- Type definitions ---------- */
+
+interface AppWithCommands extends App {
+  commands: {
+    executeCommandById(id: string): boolean;
+  };
+}
+
 /* ---------- Helpers ---------- */
 
 export function foldFriendlyAnchors(text: string): { anchors: number[]; headerAnchor: number } {
@@ -156,6 +164,7 @@ export function findImmediateParent(editor: Editor, childLine: number): number |
   return findHeadingAbove(editor, childLine);
 }
 
+
 /* ---------- Folding executor ---------- */
 
 export async function toggleFoldAtLineWithSafeCursor(
@@ -170,12 +179,12 @@ export async function toggleFoldAtLineWithSafeCursor(
   if (original.line !== line) {
     const text = editor.getLine(line) ?? "";
     const { headerAnchor } = foldFriendlyAnchors(text);
-    const targetPos = cm.state.doc.line(line + 1).from + headerAnchor;
+    const targetPos = cm.state.doc.line(line + 1).to;
     setSelectionSilent(cm, targetPos);
-    await new Promise<void>((r) => requestAnimationFrame(() => r()));
+    await new Promise<void>((r) => { void requestAnimationFrame(() => r()); });
   }
 
-const fired = (app as unknown as { commands: { executeCommandById(id: string): boolean } })
+const fired = (app as AppWithCommands)
   .commands.executeCommandById("editor:toggle-fold");
 
 if (!fired) {
@@ -192,3 +201,5 @@ if (!fired) {
 
   return true;
 }
+
+

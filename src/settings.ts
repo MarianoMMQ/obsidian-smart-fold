@@ -22,7 +22,10 @@ export class SmartFoldSettingTab extends PluginSettingTab {
   display(): void {
     const { containerEl } = this;
     containerEl.empty();
-    containerEl.createEl("h2", { text: "Smart Fold — Settings" });
+    
+    new Setting(containerEl)
+      .setName("Smart fold — Settings")
+      .setHeading();
     
     new Setting(containerEl)
       .setName("Double-tap folds parent")

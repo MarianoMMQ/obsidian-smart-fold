@@ -24,10 +24,6 @@ export class SmartFoldSettingTab extends PluginSettingTab {
     containerEl.empty();
     
     new Setting(containerEl)
-      .setName("Smart fold — Settings")
-      .setHeading();
-    
-    new Setting(containerEl)
       .setName("Double-tap folds parent")
       .setDesc("If on, pressing the hotkey twice quickly will fold the parent of the current item/heading.")
       .addToggle((t) =>

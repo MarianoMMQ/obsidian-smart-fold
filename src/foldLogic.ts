@@ -9,8 +9,12 @@ import {
   toggleFoldAtLineWithSafeCursor,
 } from "./foldingUtils";
 
+interface EditorWithCM {
+  cm?: EditorView;
+}
+
 const nextFrame = () =>
-  new Promise<void>((r) => requestAnimationFrame(() => r()));
+  new Promise<void>((r) => { void requestAnimationFrame(() => r()); });
 
 export async function smartFold(
   plugin: SmartFoldPlugin,
@@ -26,7 +30,7 @@ export async function smartFold(
   view.editor?.focus?.();
   await nextFrame();
 
-  const cm: EditorView | undefined = (editor as any)?.cm;
+  const cm: EditorView | undefined = (editor as unknown as EditorWithCM)?.cm;
   if (!cm) return;
 
   const original = editor.getCursor();

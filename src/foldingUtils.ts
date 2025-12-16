@@ -178,7 +178,7 @@ export async function toggleFoldAtLineWithSafeCursor(
 
   if (original.line !== line) {
     const text = editor.getLine(line) ?? "";
-    const { headerAnchor } = foldFriendlyAnchors(text);
+    foldFriendlyAnchors(text);
     const targetPos = cm.state.doc.line(line + 1).to;
     setSelectionSilent(cm, targetPos);
     await new Promise<void>((r) => { void requestAnimationFrame(() => r()); });

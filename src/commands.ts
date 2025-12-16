@@ -8,7 +8,7 @@ export function registerSmartFoldCommand(plugin: SmartFoldPlugin) {
     editorCallback: (editor, view) => {
       if (view && "getViewType" in view) {
         // Ensure `view` is of type `MarkdownView`
-        smartFold(plugin, editor, view);
+        void smartFold(plugin, editor, view);
       } else {
         console.error("Invalid view type passed to smartFold");
       }

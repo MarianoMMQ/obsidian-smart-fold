@@ -7,7 +7,6 @@ export function registerSmartFoldCommand(plugin: SmartFoldPlugin) {
     name: "Toggle fold",
     editorCallback: (editor, view) => {
       if (view && "getViewType" in view) {
-        // Ensure `view` is of type `MarkdownView`
         void smartFold(plugin, editor, view);
       } else {
         console.error("Invalid view type passed to smartFold");
